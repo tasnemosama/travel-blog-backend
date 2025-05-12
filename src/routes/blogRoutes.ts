@@ -7,7 +7,8 @@ import {
   getBlogById,
   getBlogBySlug,
   updateBlog,
-  deleteBlog
+  deleteBlog,
+  searchBlogs
 } from '../controllers/blogController';
 import { protect } from '../middleware/authMiddleware';
 import upload from '../middleware/uploadMiddleware';
@@ -16,6 +17,7 @@ const router = express.Router();
 
 router.get('/', getBlogs);
 router.get('/featured', getFeaturedBlogs);
+router.get('/search', searchBlogs);
 router.get('/category/:categoryId', getBlogsByCategory);
 router.get('/slug/:slug', getBlogBySlug);
 router.get('/:id', getBlogById);

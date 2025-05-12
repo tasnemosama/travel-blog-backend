@@ -64,4 +64,6 @@ const blogSchema: Schema = new Schema(
   }
 );
 
+blogSchema.index({ title: 'text', content: 'text', excerpt: 'text' });
+
 export default mongoose.model<IBlog>('Blog', blogSchema); 

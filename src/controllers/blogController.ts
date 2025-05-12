@@ -246,3 +246,50 @@ export const deleteBlog = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+export const searchBlogs = async (req: Request, res: Response) => {
+  try {
+    const query = req.query.q as string;
+    
+    if (!query) {
+      return res.status(400).json({ message: 'Search query is required' });
+    }
+
+    let searchResults: any[] = [];
+    
+    try {
+      searchResults = await Blog.find(
+        { $text: { $search: query } },
+        { score: { $meta: "textScore" } }
+      )
+        .sort({ score: { $meta: "textScore" } })
+        .populate('category', 'name slug')
+        .populate('author', 'name')
+        .limit(20);
+    } catch (error) {
+      console.log('Text search error, falling back to regex:', error);
+    }
+
+    if (searchResults.length === 0) {
+      searchResults = await Blog.find({
+        $or: [
+          { title: { $regex: query, $options: 'i' } },
+          { excerpt: { $regex: query, $options: 'i' } },
+          { content: { $regex: query, $options: 'i' } }
+        ]
+      })
+        .populate('category', 'name slug')
+        .populate('author', 'name')
+        .sort({ createdAt: -1 })
+        .limit(20);
+    }
+    
+    res.json({
+      results: searchResults,
+      count: searchResults.length,
+      query
+    });
+  } catch (error: any) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
