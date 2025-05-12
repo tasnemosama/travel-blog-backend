@@ -1,0 +1,70 @@
+<%- include('../../partials/header') %>
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Manage Blogs</h1>
+        <a href="/dashboard/blogs/create" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-2"></i> Add Blog
+        </a>
+    </div>
+
+    <% if (error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+    <% } %>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Author</th>
+                            <th>Featured</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (blogs && blogs.length > 0) { %>
+                            <% blogs.forEach(blog => { %>
+                                <tr>
+                                    <td><%= blog.title %></td>
+                                    <td><%= blog.category.name %></td>
+                                    <td><%= blog.author.name %></td>
+                                    <td>
+                                        <% if (blog.featured) { %>
+                                            <span class="badge bg-success">Yes</span>
+                                        <% } else { %>
+                                            <span class="badge bg-secondary">No</span>
+                                        <% } %>
+                                    </td>
+                                    <td><%= new Date(blog.createdAt).toLocaleDateString() %></td>
+                                    <td class="action-buttons">
+                                        <a href="/dashboard/blogs/edit/<%= blog._id %>" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form action="/dashboard/blogs/<%= blog._id %>?_method=DELETE" method="POST" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-danger btn-delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="6" class="text-center">No blogs found</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer') %> 

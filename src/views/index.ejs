@@ -1,0 +1,111 @@
+<%- include('partials/header') %>
+
+<header class="hero-section" style="background-image: url('/images/hero-background.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="container text-center hero-content">
+        <h1 class="display-4 fw-bold mb-3">Travel Blog</h1>
+        <p class="lead mb-4">Discover amazing travel destinations and experiences</p>
+        <a href="#featured" class="btn btn-primary btn-lg">Explore</a>
+    </div>
+</header>
+
+<div class="container my-5">
+    <h2 class="text-center mb-4" id="featured">Featured Categories</h2>
+    <div class="row">
+        <!-- This will be populated dynamically from the database -->
+        <div class="col-md-4 mb-4">
+            <div class="card blog-card shadow-sm h-100">
+                <img src="/images/placeholder.jpg" class="card-img-top" alt="Category">
+                <div class="card-body">
+                    <h5 class="card-title">Photography</h5>
+                    <p class="card-text">Beautiful travel photography from around the world.</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="#" class="btn btn-outline-primary">View Category</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card blog-card shadow-sm h-100">
+                <img src="/images/placeholder.jpg" class="card-img-top" alt="Category">
+                <div class="card-body">
+                    <h5 class="card-title">Travel</h5>
+                    <p class="card-text">Explore amazing destinations and travel tips.</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="#" class="btn btn-outline-primary">View Category</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card blog-card shadow-sm h-100">
+                <img src="/images/placeholder.jpg" class="card-img-top" alt="Category">
+                <div class="card-body">
+                    <h5 class="card-title">Lifestyle</h5>
+                    <p class="card-text">Travel lifestyle and culture around the world.</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="#" class="btn btn-outline-primary">View Category</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="my-5">
+    
+    <h2 class="text-center mb-4">Featured Blogs</h2>
+    <div class="row">
+        <!-- This will be populated dynamically from the database -->
+        <div class="col-md-4 mb-4">
+            <div class="card blog-card shadow-sm h-100 blog-hover-card">
+                <img src="/images/placeholder.jpg" class="card-img-top cover-image" alt="Blog post">
+                <img src="/images/placeholder-alt.jpg" class="d-none thumbnail-image" alt="Blog thumbnail">
+                <div class="card-body">
+                    <span class="badge bg-primary category-badge">Travel</span>
+                    <h5 class="card-title">The Santa Barbara Wildfire</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur egestas risus.</p>
+                    <small class="text-muted">March 17, 2023</small>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card blog-card shadow-sm h-100 blog-hover-card">
+                <img src="/images/placeholder.jpg" class="card-img-top cover-image" alt="Blog post">
+                <img src="/images/placeholder-alt.jpg" class="d-none thumbnail-image" alt="Blog thumbnail">
+                <div class="card-body">
+                    <span class="badge bg-primary category-badge">Photography</span>
+                    <h5 class="card-title">Best 50 tips for travel</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur egestas risus.</p>
+                    <small class="text-muted">March 27, 2023</small>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card blog-card shadow-sm h-100 blog-hover-card">
+                <img src="/images/placeholder.jpg" class="card-img-top cover-image" alt="Blog post">
+                <img src="/images/placeholder-alt.jpg" class="d-none thumbnail-image" alt="Blog thumbnail">
+                <div class="card-body">
+                    <span class="badge bg-primary category-badge">Lifestyle</span>
+                    <h5 class="card-title">Totes and Tarragon</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur egestas risus.</p>
+                    <small class="text-muted">March 16, 2023</small>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="#" class="btn btn-primary">View All Blogs</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %> 

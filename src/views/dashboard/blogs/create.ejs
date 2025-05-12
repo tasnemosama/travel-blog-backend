@@ -1,0 +1,76 @@
+<%- include('../../partials/header') %>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Create Blog</h1>
+        <a href="/dashboard/blogs" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Blogs
+        </a>
+    </div>
+
+    <% if (locals.error) { %>
+        <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <div class="card">
+        <div class="card-body">
+            <form action="/dashboard/blogs" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" required value="<%= locals.blog ? blog.title : '' %>">
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category._id %>" <%= locals.blog && blog.category.toString() === category._id.toString() ? 'selected' : '' %>>
+                                <%= category.name %>
+                            </option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="excerpt" class="form-label">Excerpt</label>
+                    <textarea class="form-control" id="excerpt" name="excerpt" rows="3" required><%= locals.blog ? blog.excerpt : '' %></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content</label>
+                    <textarea class="form-control" id="content" name="content"><%= locals.blog ? blog.content : '' %></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="coverImage" class="form-label">Cover Image</label>
+                    <input type="file" class="form-control" id="coverImage" name="coverImage" accept="image/*">
+                    <% if (locals.blog && blog.coverImage) { %>
+                        <div class="mt-2">
+                            <img src="<%= blog.coverImage %>" alt="Current cover" class="img-thumbnail" style="max-height: 200px;">
+                        </div>
+                    <% } %>
+                </div>
+
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">Thumbnail</label>
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*">
+                    <% if (locals.blog && blog.thumbnail) { %>
+                        <div class="mt-2">
+                            <img src="<%= blog.thumbnail %>" alt="Current thumbnail" class="img-thumbnail" style="max-height: 200px;">
+                        </div>
+                    <% } %>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="featured" name="featured" <%= locals.blog && blog.featured ? 'checked' : '' %>>
+                    <label class="form-check-label" for="featured">Featured Blog</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Blog</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer') %> 
